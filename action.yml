@@ -1,0 +1,27 @@
+name: "S3 Upload"
+description: "Upload files to an S3 bucket"
+inputs:
+  delete:
+    description: "Files that exists in the bucket only are deleted"
+    required: false
+    default: false
+  concurrent_uploads:
+    description: "Number of concurrent uploads"
+    required: false
+    default: 5
+  region:
+    description: "The AWS region where the bucket is located"
+    required: true
+  Bucket:
+    description: "The bucket where to upload files"
+    required: true
+  ACL:
+    description: "AWS SDK Upload params"
+    required: false
+    default: "private"
+  source:
+    description: "Path to source files"
+    required: true
+runs:
+  using: "node12"
+  main: "dist/index.js"
