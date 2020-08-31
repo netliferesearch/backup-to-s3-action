@@ -8,6 +8,7 @@ const {createReadStream} = require('fs');
 const {md5sum, listFiles} = require('./functions.js');
 const {cache} = require('./variables.js');
 const {resolve} = require('path');
+const fs = require("fs");
 
 const s3 = new S3({region: core.getInput('region')});
 const source = resolve(core.getInput('source'));
@@ -65,6 +66,12 @@ async function main() {
       cache.miss.push(task);
     }
   }
+
+  if(!fs.existSync("./logs")) {
+    fs.mkdirSync("./logs");
+  }
+
+  fs.writeFileSync("./logs/aws-s3-sync.json", JSON.stringify(cache));
 
   console.log(
     'add',
