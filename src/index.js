@@ -67,7 +67,7 @@ async function main() {
     }
   }
 
-  if(!fs.existSync("./logs")) {
+  if(!fs.existsSync("./logs")) {
     fs.mkdirSync("./logs");
   }
 
